@@ -466,4 +466,14 @@ export const rituals: Ritual[] = [
     id: "chhath-puja",
     title: "Chhath Puja",
     type: "Ritual",
-    state: "bih
+    state: "bihar",
+    religion: "Hinduism",
+    season: "Autumn",
+    month: 10,
+    description: "Four-day ritual dedicated to the Sun God and Chhathi Maiya",
+    significance: "Thanksgiving to the Sun God for sustaining life on earth",
+    longDescription: "Chhath Puja is a four-day ancient Hindu festival dedicated to the Sun God (Surya) and Chhathi Maiya (the Sun's sister). Primarily celebrated in Bihar, Jharkhand, and parts of Nepal, the ritual involves rigorous fasting, standing in water, and offering prayers to the rising and setting sun. The festival begins with a ritual bath, followed by a day of fasting. On the third day, devotees prepare traditional offerings and gather near riverbanks at sunset. The final day features prayers at dawn as devotees stand waist-deep in water, offering fruits and homemade delicacies to the rising sun. Chhath is remarkable for its eco-friendly nature and emphasis on cleanliness, with no use of electric lights or artificial materials in the rituals. The festival celebrates the life-sustaining energy of the sun and expresses gratitude for a good harvest and the continuity of life.",
+    occasion: "Annual festival (October-November)",
+    participants: "Primarily women, though men also participate"
+  }
+];
