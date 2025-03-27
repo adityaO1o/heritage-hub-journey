@@ -1,4 +1,3 @@
-
 import { StaticImageData } from "next/image";
 
 export type Religion = "Hinduism" | "Buddhism" | "Jainism" | "Sikhism" | "Islam" | "Christianity" | "Zoroastrianism";
@@ -467,50 +466,4 @@ export const rituals: Ritual[] = [
     id: "chhath-puja",
     title: "Chhath Puja",
     type: "Ritual",
-    state: "bihar",
-    religion: "Hinduism",
-    season: "Autumn",
-    month: 10,
-    description: "Four-day ritual dedicated to the Sun God and Chhathi Maiya",
-    significance: "Thanksgiving to the sun for sustaining life on earth",
-    longDescription: "Chhath Puja is an ancient four-day ritual dedicated to the Sun God (Surya) and Chhathi Maiya (the Sun's sister). Primarily celebrated in Bihar, Jharkhand, and eastern Uttar Pradesh, the festival has spread across India through migration. The ritual demands strict discipline, including a 36-hour fast without water by the main devotee (usually a woman). The four-day ceremony begins with ritual bathing and preparation of sacred space, followed by a day of fasting. The most significant rituals occur during the third and fourth days at sunset and sunrise, when devotees stand waist-deep in water, offering prayers and prasad (ritual food) to the setting and rising sun. The offering includes thekua (wheat cakes), fruits, and sugarcane arranged in bamboo baskets. The ritual symbolizes gratitude to the sun for sustaining life, purification, and asking for blessings for family well-being. The ceremony concludes with breaking the fast and distributing prasad among family and community members.",
-    occasion: "Six days after Diwali (October-November)",
-    participants: "Primarily women, but entire families participate"
-  },
-  {
-    id: "kumbhabhishekam",
-    title: "Kumbhabhishekam",
-    type: "Ritual",
-    state: "tamil-nadu",
-    religion: "Hinduism",
-    description: "Temple consecration ceremony performed every 12 years",
-    significance: "Ritual to recharge the temple's spiritual energy",
-    longDescription: "Kumbhabhishekam is a grand temple consecration ceremony conducted once every 12 years to renew a temple's spiritual energy. The word comes from 'kumbha' (pot) and 'abhishekam' (ritual bathing). The multi-day ceremony begins with fire rituals (yagnas) conducted by priests for several days. Sacred water is collected in kumbhas (pots) that absorb the energy from these rituals. During the culmination, priests climb to the top of the temple tower (gopuram) and pour the consecrated water over the gold kalasam (finial), symbolically energizing the entire structure. This is followed by abhishekam (ritual bathing) of the main deity. The ceremony is believed to spiritually reactivate the temple and its deities. Traditionally, any architectural repairs or renovations to the temple must be completed before this ceremony. Thousands of devotees gather to witness this auspicious event, which rejuvenates not just the temple but the entire community connected to it.",
-    occasion: "Every 12 years or after major temple renovations",
-    participants: "Temple priests, religious leaders, and devotees"
-  }
-];
-
-// Helper function to get all items for a calendar view
-export const getAllCalendarItems = () => {
-  return festivals.map(festival => ({
-    ...festival,
-    month: festival.month || 1,
-    day: 1 // Default to first day if specific date not provided
-  }));
-};
-
-// Helper function to get cultural items by state
-export const getItemsByState = (stateId: string) => {
-  return culturalItems.filter(item => item.state === stateId || item.state === "pan-india");
-};
-
-// Helper function to get items by type (Temple, Festival, Ritual)
-export const getItemsByType = (type: ContentType) => {
-  return culturalItems.filter(item => item.type === type);
-};
-
-// Helper function to get items by religion
-export const getItemsByReligion = (religion: Religion) => {
-  return culturalItems.filter(item => item.religion === religion);
-};
+    state: "bih

@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Map from "@/components/Map";
 import CulturalCard from "@/components/CulturalCard";
-import { culturalItems, ContentType, Religion, getItemsByState, getItemsByType, getItemsByReligion } from "@/lib/data";
+import { culturalItems, Temple, Festival, Ritual, ContentType, Religion, getItemsByState, getItemsByType, getItemsByReligion } from "@/lib/data";
 
 const Explore = () => {
   const [selectedState, setSelectedState] = useState<string | null>(null);
@@ -14,7 +14,7 @@ const Explore = () => {
     type: "all" as "all" | ContentType,
     religion: "all" as "all" | Religion,
   });
-  const [filteredItems, setFilteredItems] = useState(culturalItems);
+  const [filteredItems, setFilteredItems] = useState<(Temple | Festival | Ritual)[]>(culturalItems as (Temple | Festival | Ritual)[]);
   
   // Apply filters when selectedState or filter options change
   useEffect(() => {
@@ -35,7 +35,7 @@ const Explore = () => {
       items = items.filter(item => item.religion === filters.religion);
     }
     
-    setFilteredItems(items);
+    setFilteredItems(items as (Temple | Festival | Ritual)[]);
   }, [selectedState, filters]);
   
   // Reset expanded item when filtered items change

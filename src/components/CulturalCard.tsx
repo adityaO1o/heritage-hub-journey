@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Temple, Festival, Ritual } from "@/lib/data";
+import { Temple, Festival, Ritual, states } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 interface CulturalCardProps {
