@@ -477,3 +477,27 @@ export const rituals: Ritual[] = [
     participants: "Primarily women, though men also participate"
   }
 ];
+
+/**
+ * Filters cultural items by state
+ */
+export const getItemsByState = (stateId: string): CulturalItem[] => {
+  if (stateId === "all") return culturalItems;
+  return culturalItems.filter(item => item.state === stateId);
+};
+
+/**
+ * Filters cultural items by type (Temple, Festival, Ritual)
+ */
+export const getItemsByType = (type: ContentType | "all"): CulturalItem[] => {
+  if (type === "all") return culturalItems;
+  return culturalItems.filter(item => item.type === type);
+};
+
+/**
+ * Filters cultural items by religion
+ */
+export const getItemsByReligion = (religion: Religion | "all"): CulturalItem[] => {
+  if (religion === "all") return culturalItems;
+  return culturalItems.filter(item => item.religion === religion);
+};
