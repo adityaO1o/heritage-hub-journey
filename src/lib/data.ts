@@ -1,4 +1,5 @@
-import { StaticImageData } from "next/image";
+
+// Removed import from next/image since this is not a Next.js project
 
 export type Religion = "Hinduism" | "Buddhism" | "Jainism" | "Sikhism" | "Islam" | "Christianity" | "Zoroastrianism";
 export type Season = "Spring" | "Summer" | "Monsoon" | "Autumn" | "Winter";
