@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { states } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { MapPin, Info } from "lucide-react";
 
 interface MapProps {
   onStateSelect: (stateId: string) => void;
@@ -12,32 +13,50 @@ interface MapProps {
 const Map: React.FC<MapProps> = ({ onStateSelect, selectedState }) => {
   const [hoveredState, setHoveredState] = useState<string | null>(null);
 
+  // More accurate positions for Indian states
   const getPosition = (stateName: string) => {
-    // These positions are approximate and would need refinement
-    // with actual SVG map coordinates
     const positions: Record<string, { x: string; y: string }> = {
-      "Tamil Nadu": { x: "75%", y: "80%" },
-      "Rajasthan": { x: "30%", y: "35%" },
-      "West Bengal": { x: "80%", y: "50%" },
-      "Gujarat": { x: "20%", y: "50%" },
-      "Maharashtra": { x: "40%", y: "60%" },
-      "Kerala": { x: "55%", y: "85%" },
-      "Uttar Pradesh": { x: "50%", y: "40%" },
-      "Punjab": { x: "35%", y: "25%" },
+      "Tamil Nadu": { x: "58%", y: "85%" },
+      "Rajasthan": { x: "40%", y: "35%" },
+      "West Bengal": { x: "75%", y: "48%" },
+      "Gujarat": { x: "30%", y: "50%" },
+      "Maharashtra": { x: "45%", y: "65%" },
+      "Kerala": { x: "52%", y: "90%" },
+      "Uttar Pradesh": { x: "55%", y: "38%" },
+      "Punjab": { x: "43%", y: "25%" },
+      "Bihar": { x: "65%", y: "45%" },
+      "Odisha": { x: "67%", y: "60%" },
     };
     
     return positions[stateName] || { x: "50%", y: "50%" };
   };
 
   return (
-    <div className="relative w-full h-[600px] bg-black/20 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden glass-card">
+    <div className="relative w-full h-[600px] bg-gradient-to-br from-indigo-900/20 to-purple-900/30 backdrop-blur-sm rounded-xl border border-white/10 overflow-hidden glass-card">
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 pointer-events-none"></div>
       
-      {/* Map placeholder (in a production app, this would be an actual SVG map of India) */}
+      {/* Map of India - More accurate outline */}
       <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[80%] h-[80%] border-2 border-white/5 rounded-[40%] relative rotate-12"></div>
-        </div>
+        <svg 
+          viewBox="0 0 600 800" 
+          className="absolute inset-0 w-full h-full opacity-30"
+          style={{ filter: "drop-shadow(0 0 10px rgba(255,255,255,0.2))" }}
+        >
+          {/* Simplified outline of India */}
+          <path 
+            d="M250,100 C280,110 320,105 350,110 C390,120 410,150 430,180 C450,210 470,250 480,300 C490,350 500,400 490,450 C480,500 460,550 440,580 C420,610 390,630 350,650 C310,670 270,680 230,660 C190,640 170,600 150,560 C130,520 120,480 110,440 C100,400 90,360 100,320 C110,280 130,240 150,210 C170,180 200,150 230,130 C240,120 240,110 250,100 Z" 
+            fill="none" 
+            stroke="white" 
+            strokeWidth="2"
+          />
+          {/* Water bodies */}
+          <path 
+            d="M480,300 C500,320 520,330 540,320 C560,310 580,290 590,260 C600,230 590,200 580,180 C570,160 550,150 530,160 C510,170 500,190 490,210 C480,230 470,260 480,300 Z" 
+            fill="rgba(100,149,237,0.3)" 
+            stroke="rgba(255,255,255,0.5)" 
+            strokeWidth="1"
+          />
+        </svg>
         
         {/* State markers */}
         {states.map((state) => {
@@ -68,17 +87,26 @@ const Map: React.FC<MapProps> = ({ onStateSelect, selectedState }) => {
               onMouseLeave={() => setHoveredState(null)}
               onClick={() => onStateSelect(state.id)}
             >
-              <div className={cn(
-                "cursor-pointer transition-all duration-300",
-                isSelected ? "w-5 h-5" : "w-4 h-4",
-                isSelected 
-                  ? "bg-white shadow-[0_0_15px_rgba(255,255,255,0.5)]" 
-                  : "bg-white/60 hover:bg-white/80"
-              )}
-              style={{
-                borderRadius: "50%",
-              }}
-              ></div>
+              <div 
+                className={cn(
+                  "cursor-pointer transition-all duration-300 flex items-center justify-center",
+                  isSelected ? "w-8 h-8" : "w-6 h-6",
+                  isSelected 
+                    ? "bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.5)]" 
+                    : "bg-white/10 hover:bg-white/20"
+                )}
+                style={{
+                  borderRadius: "50%",
+                }}
+              >
+                <MapPin 
+                  className={cn(
+                    "transition-all duration-300",
+                    isSelected ? "text-white" : "text-white/70"
+                  )} 
+                  size={isSelected ? 18 : 14} 
+                />
+              </div>
               
               <div className={cn(
                 "absolute top-full left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap text-sm px-3 py-1 rounded-full transition-opacity duration-300",
@@ -105,6 +133,20 @@ const Map: React.FC<MapProps> = ({ onStateSelect, selectedState }) => {
               ? states.find(s => s.id === selectedState)?.description
               : "Select a state to explore its cultural heritage"}
           </p>
+        </div>
+      </div>
+      
+      {/* Map legend */}
+      <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+        <div className="flex items-center text-xs text-white/80 mb-2">
+          <Info size={12} className="mr-1 text-white/60" />
+          <span>Interactive Map of India</span>
+        </div>
+        <div className="flex items-center text-xs text-white/80">
+          <div className="w-3 h-3 rounded-full bg-white/20 flex items-center justify-center mr-2">
+            <MapPin size={8} className="text-white/70" />
+          </div>
+          <span>Click on a state to explore</span>
         </div>
       </div>
     </div>
